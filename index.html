@@ -29,7 +29,7 @@
         <h1 id="game-title">Anush Lobo<span>A walk through my world.</span></h1>
       </header>
       <div class="distance" aria-label="Position on the looping road"><span id="distance">0</span> m</div>
-      <p id="enter-prompt" class="enter-prompt" role="status" aria-live="polite" hidden></p>
+      <button id="enter-prompt" class="enter-prompt" type="button" aria-live="polite" hidden></button>
 
       <!-- Resume content remains ordinary, accessible HTML over the 3D scene. -->
       <dialog id="resume-panel" class="resume-panel" aria-labelledby="panel-title">
@@ -45,6 +45,14 @@
         <p id="journey-status" role="status" aria-live="polite">Take the first step.</p>
         <div id="controls"><span><kbd>↑</kbd> / <kbd>W</kbd> Forward</span><span><kbd>↓</kbd> / <kbd>S</kbd> Backward</span></div>
       </footer>
+      <div id="mobile-controls" class="mobile-controls" aria-label="Touch movement controls">
+        <button id="move-forward" class="move-control" type="button" data-movement-key="arrowup" aria-label="Move forward">
+          <span aria-hidden="true">▲</span><small>Front</small>
+        </button>
+        <button id="move-backward" class="move-control" type="button" data-movement-key="arrowdown" aria-label="Move backward">
+          <span aria-hidden="true">▼</span><small>Back</small>
+        </button>
+      </div>
       <noscript><p class="no-script">Enable JavaScript to explore the walking world.</p></noscript>
     </main>
   </body>
