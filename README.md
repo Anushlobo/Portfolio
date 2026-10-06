@@ -65,6 +65,8 @@ Serve the folder over HTTP using the command above; the 3D scene uses ES modules
 | **→** near a right-side house | Enter that resume section. |
 | **Esc** or the opposite arrow | Close the section and return to the same place on the road. |
 
+On phones and other touch devices, hold the **Front** or **Back** touch button to move. When a house prompt appears, tap the prompt itself to open that section; the prompt shows the correct left/right direction and section name.
+
 An entry prompt appears when you are close enough to a house. Walking pauses while an overlay is open. Long section content scrolls inside the overlay, and the **×** button also closes it.
 
 ## Project files

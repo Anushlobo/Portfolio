@@ -50,9 +50,18 @@ kbd { display: inline-block; min-width: 22px; padding: 4px; border: 1px solid #d
   font-size: 12px;
   line-height: 1.4;
   text-align: center;
-  pointer-events: none;
+  pointer-events: auto;
+  appearance: none;
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
   animation: hint-float 2.8s ease-in-out infinite;
 }
+.enter-prompt:hover { background: #fffaf0ed; }
+.enter-prompt:focus-visible { outline: 3px solid #547b60; outline-offset: 3px; }
+.enter-arrow { display: inline-grid; width: 25px; height: 25px; margin: 0 3px; place-items: center; border: 1px solid #d3dac6; border-bottom-width: 3px; border-radius: 6px; background: #fff; font-weight: 700; }
+.enter-action-label { font-weight: 700; }
+.mobile-controls { display: none; }
 .enter-prompt[hidden] { display: none; }
 @keyframes hint-float {
   0%, 100% { transform: translate(-50%, -100%); }
@@ -88,6 +97,17 @@ kbd { display: inline-block; min-width: 22px; padding: 4px; border: 1px solid #d
   .distance { top: 20px; right: 16px; }
   .game-hud { bottom: 16px; padding: 13px 16px; }
   #controls { gap: 12px; font-size: 10px; }
+}
+@media (max-width: 700px), (pointer: coarse) {
+  .mobile-controls { position: absolute; z-index: 3; right: 16px; bottom: 18px; display: flex; flex-direction: column; gap: 9px; }
+  .move-control { display: grid; width: 64px; height: 64px; place-items: center; padding: 8px 6px 6px; border: 1px solid #ffffff; border-radius: 18px; background: #fffcf0e8; color: var(--ink); box-shadow: 0 8px 22px #293e3630; cursor: pointer; font: inherit; touch-action: none; user-select: none; -webkit-tap-highlight-color: transparent; }
+  .move-control span { font-size: 24px; line-height: 1; }
+  .move-control small { margin-top: -2px; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+  .move-control:active { transform: translateY(2px); background: #fff; box-shadow: 0 4px 12px #293e3630; }
+  .enter-prompt { max-width: calc(100% - 28px); padding: 12px 15px; touch-action: manipulation; }
+  .game-hud { right: 92px; left: 16px; width: auto; max-width: none; transform: none; padding: 12px 14px; }
+  #controls { display: none; }
+  .game-hud p { margin-bottom: 0; font-size: 11px; }
 }
 @media (max-height: 450px) {
   .game-heading { top: 12px; padding: 10px 15px; }

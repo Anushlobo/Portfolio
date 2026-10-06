@@ -61,7 +61,7 @@ repository root/
 3. Under **Build and deployment**, set:
 
    | Setting | Value |
-   | --- | --- |
+   |   ---   |  ---  |
    | Source | **Deploy from a branch** |
    | Branch | **main**, or the branch containing the uploaded files |
    | Folder | **/(root)** |
@@ -94,6 +94,7 @@ Use the supplied `github.io` URL for free hosting. In **Settings → Pages**, en
 
 - Confirm the full-screen road and character load with their styling.
 - Hold **↑/W** and **↓/S** to check walking and camera following.
+- On a phone, hold the **Front** and **Back** touch buttons and tap the directional house prompt to enter a section.
 - Visit each house, wait for its prompt, and press the arrow toward it to enter.
 - Close sections using **Esc**, the opposite arrow, and the **×** button.
 - Check narrow-screen layouts with your browser's responsive preview.

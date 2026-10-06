@@ -135,9 +135,16 @@ function renderProximity(stop, signPosition) {
   const nearby = !state.activeStop && signPosition.visible
     && Math.abs(getStopDistance(stop, state.player.distance) - state.player.distance) <= CONFIG.enterDistance ? stop : null;
   if (nearby && nearby.id !== state.nearbyStop?.id) {
-    const key = document.createElement('kbd');
-    key.textContent = nearby.side === 'left' ? '←' : '→';
-    enterPrompt.replaceChildren('Press ', key, ` to enter ${nearby.label}`);
+    const arrow = document.createElement('span');
+    arrow.className = 'enter-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = nearby.side === 'left' ? '←' : '→';
+    const action = document.createElement('span');
+    action.className = 'enter-action-label';
+    action.textContent = `Visit ${nearby.label}`;
+    const actionVerb = window.matchMedia('(pointer: coarse)').matches || window.matchMedia('(max-width: 700px)').matches ? 'Tap' : 'Press';
+    enterPrompt.replaceChildren(`${actionVerb} `, arrow, ' to ', action);
+    enterPrompt.dataset.side = nearby.side;
   }
   state.nearbyStop = nearby ?? null;
   enterPrompt.hidden = !nearby;
@@ -146,6 +153,18 @@ function renderProximity(stop, signPosition) {
     const margin = enterPrompt.offsetWidth / 2 + 12;
     enterPrompt.style.left = `${Math.max(margin, Math.min(state.viewport.width - margin, signPosition.x))}px`;
     enterPrompt.style.top = `${Math.max(135, Math.min(state.viewport.height - 120, signPosition.y - 12))}px`;
+  }
+}
+
+function handleTouchMovement(event) {
+  const key = event.currentTarget.dataset.movementKey;
+  if (!key || state.activeStop) return;
+  event.preventDefault();
+  if (event.type === 'pointerdown') {
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    state.keys.add(key);
+  } else {
+    state.keys.delete(key);
   }
 }
 
@@ -268,6 +287,18 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) clear
 game.addEventListener('pointerdown', () => {
   // Reading and clicking inside the modal should never refocus the game.
   if (!state.activeStop) game.focus({ preventScroll: true });
+});
+enterPrompt.addEventListener('click', () => {
+  if (state.nearbyStop && !state.activeStop) openSection(state.nearbyStop);
+});
+document.querySelectorAll('[data-movement-key]').forEach((control) => {
+  control.addEventListener('pointerdown', handleTouchMovement);
+  control.addEventListener('pointerup', handleTouchMovement);
+  control.addEventListener('pointercancel', handleTouchMovement);
+  control.addEventListener('lostpointercapture', (event) => {
+    const key = event.currentTarget.dataset.movementKey;
+    if (key) state.keys.delete(key);
+  });
 });
 document.querySelector('#panel-close').addEventListener('click', closeSection);
 panel.addEventListener('cancel', (event) => { event.preventDefault(); closeSection(); });
