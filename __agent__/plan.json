@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "title": "Inspect the existing app structure and entry points",
+      "status": "done"
+    },
+    {
+      "title": "Plan the portfolio journey and content sections",
+      "status": "done"
+    },
+    {
+      "title": "Implement the walking-road portfolio experience",
+      "status": "in-progress"
+    },
+    {
+      "title": "Run the app checks and review the result",
+      "status": "pending"
+    }
+  ],
+  "updated_at": "2026-10-04T10:14:13.575Z",
+  "session_id": "01a10661-684f-76d9-a9a0-8e4fb8e04297"
+}

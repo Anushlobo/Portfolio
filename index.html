@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#b9e1f5" />
+    <meta name="description" content="Explore Anush Lobo's portfolio in a sunny 3D walking world." />
+    <title>Anush Lobo — A Walk Through My World</title>
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Pinned ES modules keep static hosting compatible with GitHub Pages. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script src="resume-data.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main id="game" class="game" tabindex="0" aria-labelledby="game-title" aria-describedby="controls">
+      <canvas id="scene" class="scene" role="img" aria-label="A cartoon adventurer on a sunny 3D road, visiting resume houses"></canvas>
+      <p id="scene-status" class="scene-status" role="status">Building your little world…</p>
+
+      <header class="game-heading">
+        <p class="eyebrow">A LITTLE WORLD TO EXPLORE</p>
+        <h1 id="game-title">Anush Lobo<span>A walk through my world.</span></h1>
+      </header>
+      <div class="distance" aria-label="Position on the looping road"><span id="distance">0</span> m</div>
+      <p id="enter-prompt" class="enter-prompt" role="status" aria-live="polite" hidden></p>
+
+      <!-- Resume content remains ordinary, accessible HTML over the 3D scene. -->
+      <dialog id="resume-panel" class="resume-panel" aria-labelledby="panel-title">
+        <header class="panel-header">
+          <div><p id="panel-number" class="eyebrow"></p><h2 id="panel-title"></h2></div>
+          <button id="panel-close" class="panel-close" type="button" aria-label="Return to the road">×</button>
+        </header>
+        <div id="panel-content" class="panel-content" tabindex="0" role="region" aria-label="Resume section content"></div>
+        <footer id="panel-exit-hint" class="panel-footer"></footer>
+      </dialog>
+
+      <footer class="game-hud">
+        <p id="journey-status" role="status" aria-live="polite">Take the first step.</p>
+        <div id="controls"><span><kbd>↑</kbd> / <kbd>W</kbd> Forward</span><span><kbd>↓</kbd> / <kbd>S</kbd> Backward</span></div>
+      </footer>
+      <noscript><p class="no-script">Enable JavaScript to explore the walking world.</p></noscript>
+    </main>
+  </body>
+</html>
